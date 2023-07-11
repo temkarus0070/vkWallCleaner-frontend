@@ -16,6 +16,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "proxyConfig": "src/proxy.conf.json",
           "options": {
             "outputPath": "dist/VkWallCleanerFrontend",
             "index": "src/index.html",
@@ -68,10 +69,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "VkWallCleanerFrontend:build:production"
+              "browserTarget": "VkWallCleanerFrontend:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "browserTarget": "VkWallCleanerFrontend:build:development"
+              "browserTarget": "VkWallCleanerFrontend:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
