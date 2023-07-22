@@ -13,7 +13,7 @@ export class VkService {
   }
 
   clearCurrentWall(): Observable<number> {
-    return this.httpClient.post<number>(`${BACKEND_URL}/clean-current`, null, {})
+    return this.httpClient.post<number>(`${BACKEND_URL}/posts/clean-current`, null, {})
 
   }
 
@@ -29,7 +29,7 @@ export class VkService {
       formData,{headers:headers})
       .pipe(map((x: any) => {
         console.log(x)
-        if (x.response.length>0&&x.response[0].copy_history.length > 0)
+        if (x.response.length > 0 && x.response[0].copy_history.length > 0)
           return this.httpClient.post(`${BACKEND_URL}/posts/exclude`, {
             postId: x.response[0].id,
             text: x.response[0].copy_history[0].text
@@ -38,5 +38,13 @@ export class VkService {
       }))
 
 
+  }
+
+  getAndCleanAllWall(): Observable<URL[]> {
+    return this.httpClient.post<URL[]>(`${BACKEND_URL}/posts/get-and-clean-all`, {}, {});
+  }
+
+  getRemovedPosts(): Observable<Map<string, Date[]>> {
+    return this.httpClient.get<Map<string, Date[]>>(`${BACKEND_URL}/posts/removed-posts`, {});
   }
 }

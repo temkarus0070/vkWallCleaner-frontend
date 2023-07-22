@@ -12,6 +12,8 @@ export class AppComponent {
   title = 'VkWallCleanerFrontend';
   public currentPostClean: number | null = null;
 
+  public removedPostsUrls: Map<string, Date[]> = new Map<string, Date[]>();
+
   postUrl = new FormControl('')
 
   constructor(public authService: AuthService, public vkService: VkService) {
@@ -20,18 +22,37 @@ export class AppComponent {
   clearCurrentWall() {
     this.vkService.clearCurrentWall().subscribe(val => {
       this.currentPostClean = val;
-    },error => {
+    }, error => {
       console.log(error);
     });
   }
 
   addExclusion() {
     this.vkService.addExclusionPost(this.postUrl.value).subscribe(e => {
-    e.subscribe(e=>{
-      console.log(e)
-    },error => console.log(error))
-    },error => {
+      e.subscribe(e => {
+        console.log(e)
+      }, error => console.log(error))
+    }, error => {
       console.log(error);
     });
+  }
+
+  getAndCleanAllWall() {
+    this.vkService.getAndCleanAllWall().subscribe(urls => {
+    })
+  }
+
+  getRemovedPosts() {
+    this.vkService.getRemovedPosts().subscribe(posts => {
+      this.removedPostsUrls = posts;
+      for (let entry in this.removedPostsUrls) {
+        setTimeout(() => {
+          window.open(entry, '_blank', 'noopener, noreferrer');
+        }, 3000);
+
+      }
+
+
+    })
   }
 }

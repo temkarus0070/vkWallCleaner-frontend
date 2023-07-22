@@ -6,10 +6,14 @@
   <p *ngIf="currentPostClean!=null">было удалено {{currentPostClean}} постов</p>
 
   <div>
-<form>
-  <label for="postUrl">ссылка на пост</label>
-  <input [formControl]="postUrl" id="postUrl" />
-  <button type="button" (click)="addExclusion()">Добавить пост в исключения</button>
-</form>
+    <form>
+      <label for="postUrl">ссылка на пост</label>
+      <input [formControl]="postUrl" id="postUrl"/>
+      <button (click)="addExclusion()" type="button">Добавить пост в исключения</button>
+    </form>
   </div>
+  <button (click)="getAndCleanAllWall()">Очистить всю стену и вернуть ссылки на посты</button>
+  <button (click)="getRemovedPosts()">
+    открыть удаленные конкурсы
+  </button>
 </div>
