@@ -15,6 +15,7 @@ export class AppComponent {
   public removedPostsUrls: Map<string, Date[]> = new Map<string, Date[]>();
 
   postUrl = new FormControl('')
+  public lastPostClean: number | null = null;
 
   constructor(public authService: AuthService, public vkService: VkService) {
   }
@@ -54,5 +55,13 @@ export class AppComponent {
 
 
     })
+  }
+
+  clearLastYearsPosts() {
+    this.vkService.clearLastYearsPosts().subscribe(val => {
+      this.lastPostClean = val;
+    }, error => {
+      console.log(error);
+    });
   }
 }

@@ -47,4 +47,9 @@ export class VkService {
   getRemovedPosts(): Observable<Map<string, Date[]>> {
     return this.httpClient.get<Map<string, Date[]>>(`${BACKEND_URL}/posts/removed-posts`, {});
   }
+
+  clearLastYearsPosts(): Observable<number> {
+    return this.httpClient.post<number>(`${BACKEND_URL}/posts/clean-past`, null, {})
+
+  }
 }

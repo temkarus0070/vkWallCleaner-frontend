@@ -1,10 +1,13 @@
 <div>
   <button *ngIf="!authService.checkAuth()" (click)="authService.login()">login</button>
 </div>
-<div>
+<div id="main-container">
   <button (click)="clearCurrentWall()">Очистить стену от конкурсов</button>
   <p *ngIf="currentPostClean!=null">было удалено {{currentPostClean}} постов</p>
 
+
+  <button (click)="clearLastYearsPosts()">Очистить стену от конкурсов прошлых лет</button>
+  <p *ngIf="lastPostClean!=null">было удалено {{lastPostClean}} постов</p>
   <div>
     <form>
       <label for="postUrl">ссылка на пост</label>
