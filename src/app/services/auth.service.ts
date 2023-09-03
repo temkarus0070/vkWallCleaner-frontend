@@ -13,13 +13,6 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
-  public HasAuth(): boolean {
-    var item = localStorage.getItem("Authorization");
-    if (item == null)
-      return false;
-    return true;
-  }
-
 
   init(): Promise<any> {
     return new Promise((resolve, reject) => {
